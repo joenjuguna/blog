@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Summer Autumn Blog</title>
+    <meta name ="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+<header class="w3-container w3-teal w3-center">
+    <h1>Summer Autumn Blog</h1>
+</header>
+{% if user.is_authenticated %}
+<div class="w3-left-align">
+    <h4>Welcome, {{user.username}}</h4>
+
+</div>
+{% endif %}
+{% if user.is_authenticated %}
+<div class="w3-right-align">
+    <a href="logout" class="w3-button w3-blue w3-round-xlarge w3-hover-purple ">Logout</a>
+    {% else %}
+    <a href="login" class="w3-button w3-blue w3-round-xlarge w3-hover-purple ">Login</a>
+
+
+</div>
+{% endif %}
+{% for post in posts reversed %}
+<div class="w3-container w3-center ">
+    <a style="text-decoration:none; color:black"; href="/post/{{post.id}}"><H2>{{post.title}}</H2>
+    <h3>{{post.created_at}}</h3>
+    <p>{{post.body|truncatewords:20}}</p>
+    </a>
+</div>
+
+{%endfor%}
+<footer class="w3-container w3-teal w3-center">
+    <h1>Summer Autumn Blog &copy; 2023</h1>
+</footer>
+</body>
+</html>
